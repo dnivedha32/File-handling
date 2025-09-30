@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Function prototypes
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+int mul(int a, int b) { return a * b; }
+int divide(int a, int b) { return b != 0 ? a / b : 0; } // Avoid divide by zero
+
+int main() {
+    int x, y, choice, result;
+
+    // Array of function pointers
+    int (*operations[4])(int, int) = { add, sub, mul, divide };
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);
+
+    printf("\nChoose operation:\n");
+    printf("0: Add\n1: Subtract\n2: Multiply\n3: Divide\n");
+    printf("Enter choice: ");
+    scanf("%d", &choice);
+
+    if (choice >= 0 && choice < 4) {
+        result = operations[choice](x, y); // Call function using pointer
+        printf("Result = %d\n", result);
+    } else {
+        printf("Invalid choice!\n");
+    }
+
+    return 0;
+}
